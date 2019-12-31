@@ -10,14 +10,17 @@ import java.util.Stack;
 class Solution {
     public boolean isValid(String s) {
         char[] chars = s.toCharArray();
-
         Stack<Character> stack = new Stack<>();
         for (char item : chars) {
-            if (item == '(' || item == '[') {
+            if (item == '(' || item == '[' || item == '{') {
                 stack.push(item);
             } else {
+                if (stack.isEmpty()) {
+                    return false;
+                }
                 char result = stack.pop();
-                if ((result == '(' && item == ')') || (result == '[' && item == ']')) {
+                if ((result == '(' && item == ')') || (result == '[' && item == ']')
+                        || (result == '{' && item == '}')) {
                     continue;
                 } else {
                     return false;
@@ -25,8 +28,7 @@ class Solution {
 
             }
         }
-
-        return true;
+        return stack.isEmpty();
 
     }
 }
