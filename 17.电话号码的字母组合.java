@@ -41,7 +41,7 @@ class Solution {
         }
 
         // process
-        String letters = map.get(digits.charAt(level));
+        String letters = map.get(String.valueOf(digits.charAt(level)));
 
         for (int i = 0; i < letters.length(); i++) {
             // drill dowmn
