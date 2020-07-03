@@ -76,5 +76,46 @@ class Solution {
         return head.next;
     }
 
+    public ListNode mergeKLists2(ListNode[] lists) {
+        if (lists == null) {
+            return null;
+        }
+
+        return _merge(0, lists.length - 1, lists);
+
+    }
+
+    private ListNode _merge(int left, int right, ListNode[] lists) {
+        if (left == right) {
+            return lists[left];
+        }
+
+        int mid = (left + right) / 2;
+        ListNode n1 = _merge(left, mid, lists);
+        ListNode n2 = _merge(mid + 1, right, lists);
+
+        return _merge2List(n1, n2);
+
+    }
+
+    private ListNode _merge2List(ListNode n1, ListNode n2) {
+
+        if (n1 == null) {
+            return n2;
+        }
+        if (n2 == null) {
+            return n1;
+        }
+        if(n1.val<n2.val){
+            n1.next= _merge2List(n1, n2);
+            return n1;
+        }else{
+            n2.next=_merge2List(n1, n2.next);
+            return n2;
+        }
+
+
+    }
+
 }
 // @lc code=end
