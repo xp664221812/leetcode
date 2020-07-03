@@ -14,21 +14,34 @@ for (int i = 0; i < height.length - 1; i++) {
 }
 **/
 //时间复杂度o(n^2)
-// class Solution {
-//     public int maxArea(int[] height) {
-//         int max = 0;
-//         for (int i = 0; i < height.length - 1; i++) {
-//             for (int j = i + 1; j < height.length; j++) {
-//                 int area = Math.min(height[i], height[i]) * (j - i);
-//                 if (area > max) {
-//                     max = area;
-//                 }
-//             }
-//         }
-//         return max;
-//     }
-// }
-//时间复杂度o(n)
+class Solution1 {
+    public int maxArea(int[] height) {
+        int max = 0;
+        for (int i = 0; i < height.length - 1; i++) {
+            for (int j = i + 1; j < height.length; j++) {
+                int area = Math.min(height[i], height[i]) * (j - i);
+                if (area > max) {
+                    max = area;
+                }
+            }
+        }
+        return max;
+    }
+
+    public int maxArea2(int[] height) {
+        int max = 0;
+        for (int i = 0; i < height.length - 1; i++) {
+            for (int j = i + 1; j < height.length; j++) {
+                int area = Math.min(height[i], height[j]) * (j - i);
+                max = Math.max(area, max);
+            }
+        }
+        return max;
+    }
+
+}
+
+// 时间复杂度o(n)
 class Solution {
     public int maxArea(int[] height) {
         int max = 0;
@@ -38,6 +51,22 @@ class Solution {
             max = Math.max(max, area);
         }
 
+        return max;
+    }
+
+    public int maxArea2(int[] height) {
+        int max = 0;
+        for (int i = 0, j = height.length - 1; i < j;) {
+            if (height[i] > height[j]) {
+                int area=(j-i)*height[j];
+                max=Math.max(area, max);
+                j--;
+            }else{
+                int area=(j-i)*height[i];
+                max=Math.max(area, max);
+                i++;
+            }
+        }
         return max;
     }
 }
