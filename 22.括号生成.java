@@ -45,6 +45,38 @@ class Solution {
 
     }
 
+
+
+    public List<String> generateParenthesis1(int n) {
+        generateParenthesis1(n,0,0,"");
+
+        return list;
+    }
+
+    private void generateParenthesis1(int n,int left,int right,String current){
+        if(left==3&&right==3){
+            list.add(current);
+            System.out.println(current);
+            return;
+        }
+
+        String s1=current+"(";
+        String s2=current+")";
+
+        if(left<n){
+            generateParenthesis1(n, left+1, right, s1);
+        }
+        if(right<left){
+            generateParenthesis1(n, left, right+1, s2);
+        }
+
+
+
+    }
+
+
+
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         solution.generateParenthesis(3);

@@ -31,5 +31,30 @@ class Solution {
         return stack.isEmpty();
 
     }
+
+    public boolean isValid1(String s) {
+        char[] chars = s.toCharArray();
+        Stack<Character> stack = new Stack<>();
+        for (char character : chars) {
+            if (character == '(' || character == '[' || character == '{') {
+                stack.push(character);
+            } else {
+                if (stack.isEmpty()) {
+                    return false;
+                }
+
+                char item = stack.pop();
+                if ((item == '(' && character == ')') || (item == '[' && character == ']')
+                        || (item == '{' && character == '}')) {
+                        continue;    
+                }else{
+                    return false;
+                }
+
+            }
+            
+        }
+        return stack.isEmpty();
+    }
 }
 // @lc code=end
