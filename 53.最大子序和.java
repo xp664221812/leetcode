@@ -14,17 +14,33 @@
 
 // @lc code=start
 class Solution {
+    // 穷举法
     public int maxSubArray(int[] nums) {
-
-        return ;
-    }
-
-    private void _search(int[]nums,int level){
-        if(level){
-
+        if(nums.length==1){
+            return nums[0];
         }
+        int max = nums[0];
+       
+        for (int i = 0; i < nums.length - 1; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
 
+                int m=Math.max(nums[i], nums[j]);
+                int r = Math.max(_sum(nums, i, j), Math.max(nums[i], nums[j]));
+                if (r > max) {
+                    max = r;
+                }
+            }
+        }
+        return max;
     }
+
+    private int _sum(int[] array, int start, int end) {
+        int sum = 0;
+        for (int i = start; i <= end; i++) {
+            sum += array[i];
+        }
+        return sum;
+    }
+
 }
 // @lc code=end
-
