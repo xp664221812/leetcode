@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /*
  * @lc app=leetcode.cn id=53 lang=java
  *
@@ -15,16 +17,24 @@
 // @lc code=start
 class Solution {
     public int maxSubArray(int[] nums) {
+        if(nums.length==1){
+            return nums[0];
+        }
+        int[] dp = nums;
 
-        return ;
-    }
-
-    private void _search(int[]nums,int level){
-        if(level){
-
+        for (int i = 1; i < nums.length; i++) {
+            dp[i] = Math.max(dp[i - 1], 0) + nums[i];
+        }
+        int max=dp[0];
+        for (int i = 1; i < dp.length; i++) {
+            if(max<dp[i]){
+                max=dp[i];
+            }
         }
 
+        return max;
+        
     }
+
 }
 // @lc code=end
-
