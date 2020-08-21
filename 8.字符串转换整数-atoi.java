@@ -9,6 +9,9 @@ class Solution {
     public int myAtoi(String str) {
         int sign = 1, total = 0, index = 0;
         str = str.trim();
+        if("".equals(str)){
+            return 0;
+        }
 
         char[] ch = str.toCharArray();
 
@@ -18,22 +21,30 @@ class Solution {
         } else if (str.charAt(index) == '+') {
             index++;
         } else {
-            return 0;
+            if(str.charAt(index) - '0'>9){
+                return 0;
+            }
         }
 
-        while(index<str.length()){
-            
+        while (index < str.length()) {
+            int r = str.charAt(index) - '0';
+            if (r < 0 || r > 9) {
+                break;
+            }
+            if (total > (Integer.MAX_VALUE - r) / 10) {
+                if (sign == 1) {
+                    return Integer.MAX_VALUE;
+                } else {
+                    return Integer.MIN_VALUE;
+                }
+            }
+
+            total = total * 10 + r;
+            index++;
+
         }
 
-
-
-
-        // for (int i = 0; i < ch.length; i++) {
-        // if(ch[i]=='-'){
-
-        // }
-
-        // }
+        return total * sign;
 
     }
 }
