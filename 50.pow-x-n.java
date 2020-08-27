@@ -36,5 +36,31 @@ class Solution {
         return result;
 
     }
+
+    public double myPow1(double x, int n) {
+
+        if (n > 0) {
+            return _recur2(x, n);
+        } else {
+            return 1 / _recur2(x, -n);
+        }
+    }
+
+    public double _recur2(double x, int n) {
+        if (n == 0) {
+            return 1;
+        }
+        double r = _recur2(x, n / 2);
+        double result;
+        if (n % 2 == 0) {
+            result = r * r;
+        } else {
+            result = r * r * x;
+        }
+
+        return result;
+
+    }
+
 }
 // @lc code=end
