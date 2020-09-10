@@ -86,23 +86,54 @@ class Solution {
 
     }
 
-
     public ListNode mergeTwoLists4(ListNode t1, ListNode t2) {
+        if (t1 == null) {
+            return t2;
+        }
+        if (t2 == null) {
+            return t1;
+        }
+
+        if (t1.val < t2.val) {
+            t1.next = mergeTwoLists4(t1.next, t2);
+            return t1;
+        } else {
+            t2.next = mergeTwoLists4(t1, t2.next);
+            return t2;
+        }
+
+    }
+
+    public ListNode mergeTwoLists5(ListNode t1, ListNode t2) {
+        if (t1 == null) {
+            return t2;
+        }
+        if (t2 == null) {
+            return t1;
+        }
+
+        ListNode head = new ListNode(0);
+        ListNode current = head;
+
+        while (t1 != null && t2 != null) {
+            if (t1.val < t2.val) {
+                current.next=t1;
+                current=t1;
+                t1=t1.next;
+            }else{
+                current.next=t2;
+                current=t2;
+                t2=t2.next;
+            }
+        }
         if(t1==null){
-            return t2;
+            current.next=t2;
         }
+
         if(t2==null){
-            return t1;
+            current.next=t1;
         }
-        
-        if(t1.val<t2.val){
-            t1.next=mergeTwoLists4(t1.next, t2);
-            return t1;
-        }else{
-            t2.next=mergeTwoLists4(t1, t2.next);
-            return t2;
-        }
-        
+        return head.next;
 
     }
 
