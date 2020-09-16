@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -8,7 +9,7 @@ import java.util.List;
 
 // @lc code=start
 
- class TreeNode {
+class TreeNode {
     int val;
     TreeNode left;
     TreeNode right;
@@ -19,10 +20,23 @@ import java.util.List;
 }
 
 class Solution {
+    private List<Integer> ans = new ArrayList<>();
+
     public List<Integer> inorderTraversal(TreeNode root) {
-        inorderTraversal(root.left);
-        
+        _recur(root);
+        return ans;
+
     }
-    
+
+    private void _recur(TreeNode node) {
+        if (node == null) {
+            return;
+        }
+
+        _recur(node.left);
+        ans.add(node.val);
+        _recur(node.right);
+    }
+
 }
 // @lc code=end
