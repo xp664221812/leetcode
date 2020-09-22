@@ -17,7 +17,7 @@ import java.util.Arrays;
 // @lc code=start
 class Solution {
     public int maxSubArray(int[] nums) {
-        if(nums.length==1){
+        if (nums.length == 1) {
             return nums[0];
         }
         int[] dp = nums;
@@ -25,16 +25,42 @@ class Solution {
         for (int i = 1; i < nums.length; i++) {
             dp[i] = Math.max(dp[i - 1], 0) + nums[i];
         }
-        int max=dp[0];
+        int max = dp[0];
         for (int i = 1; i < dp.length; i++) {
-            if(max<dp[i]){
+            if (max < dp[i]) {
+                max = dp[i];
+            }
+        }
+
+        return max;
+
+    }
+
+}
+/**
+ * 20200922
+ */
+class Solution1 {
+    public int maxSubArray(int[] nums) {
+        if(nums.length==1){
+            return nums[0];
+        }
+
+        int dp[]=new int[nums.length];
+
+        for (int i = 0; i < nums.length; i++) {
+            dp[i]=Math.max(0, dp[i-1]+nums[i]);
+        }
+
+        int max=dp[0];
+        for (int i = 0; i < dp.length; i++) {
+            if(dp[i]<max){
                 max=dp[i];
             }
         }
 
         return max;
-        
-    }
 
+    }
 }
 // @lc code=end

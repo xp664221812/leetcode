@@ -56,5 +56,29 @@ class Solution {
 
     }
 
+    // 动态规划1
+    public int findMaxForm1(String[] strs, int m, int n) {
+        if (strs.length == 0 || (m == 0 && n == 0)) {
+            return 0;
+        }
+
+        for (int i = 0; i < strs.length; i++) {
+            int size0 = 0;
+            int size1 = 0;
+            String str = strs[i];
+            for (int j = 0; j < str.length(); j++) {
+                if (str.charAt(j) == '0') {
+                    size0++;
+                } else if (str.charAt(j) == '1') {
+                    size1++;
+                }
+            }
+
+            
+        }
+
+        return ans;
+    }
+
 }
 // @lc code=end

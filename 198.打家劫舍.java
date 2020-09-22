@@ -26,22 +26,22 @@ class Solution {
     int biggest = 0;
 
     public int rob(int[] nums) {
-        if(nums.length==0){
+        if (nums.length == 0) {
             return 0;
         }
-        if(nums.length==1){
+        if (nums.length == 1) {
             return nums[0];
         }
         int[][] dp = new int[nums.length][2];
-        //0表示没偷第i个，1表示偷了
+        // 0表示没偷第i个，1表示偷了
         dp[0][0] = 0;
         dp[0][1] = nums[0];
         for (int i = 1; i < nums.length; i++) {
-            dp[i][0] = Math.max(dp[i-1][1], dp[i-1][0]);
-            dp[i][1] = Math.max(dp[i-1][0], 0) + nums[i];
+            dp[i][0] = Math.max(dp[i - 1][1], dp[i - 1][0]);
+            dp[i][1] = Math.max(dp[i - 1][0], 0) + nums[i];
         }
 
-        return Math.max(dp[nums.length-1][0], dp[nums.length-1][1]);
+        return Math.max(dp[nums.length - 1][0], dp[nums.length - 1][1]);
     }
 
     public int rob1(int[] nums) {
@@ -74,29 +74,50 @@ class Solution {
 
     }
 
-
     public int rob3(int[] nums) {
-        if(nums.length==0){
+        if (nums.length == 0) {
             return 0;
         }
-        if(nums.length==1){
+        if (nums.length == 1) {
             return nums[0];
         }
 
-        int[][]dp=new int[nums.length][2];
+        int[][] dp = new int[nums.length][2];
 
-        dp[0][0]=0;
-        dp[0][1]=nums[0];
+        dp[0][0] = 0;
+        dp[0][1] = nums[0];
 
         for (int i = 0; i < nums.length; i++) {
-            dp[i][0]=Math.max(dp[i-1][0], dp[i-1][1]);
-            dp[i][1]=dp[i-1][0]+nums[i];
+            dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1]);
+            dp[i][1] = dp[i - 1][0] + nums[i];
         }
 
-        return Math.max(dp[nums.length-1][0], dp[nums.length-1][1]);
-
+        return Math.max(dp[nums.length - 1][0], dp[nums.length - 1][1]);
 
     }
 
 }
+/**
+ * 20200922
+ */
+class Solution1 {
+    int biggest = 0;
+
+    public int rob(int[] nums) {
+
+        int dp[][] = new int[nums.length][2];
+
+        dp[0][0] = 0;
+        dp[0][1] = nums[0];
+
+        for (int i = 0; i < dp.length; i++) {
+            dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1]);
+            dp[i][1] = dp[i - 1][0] + nums[i];
+        }
+
+        return Math.max(dp[nums.length-1][0], dp[nums.length-1][1]);
+
+    }
+}
+
 // @lc code=end
