@@ -1,5 +1,8 @@
+import java.lang.Thread.State;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
+import java.util.Stack;
 
 /*
  * @lc app=leetcode.cn id=94 lang=java
@@ -36,6 +39,53 @@ class Solution {
         _recur(node.left);
         ans.add(node.val);
         _recur(node.right);
+    }
+
+    // 非递归
+    public List<Integer> inorderTraversal1(TreeNode root) {
+        Stack<TreeNode> stack = new Stack();
+
+        while (root != null || !stack.isEmpty()) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            ans.add(root.val);
+            root = root.right;
+        }
+        return ans;
+    }
+
+    public List<Integer> inorderTraversal2(TreeNode root) {
+        Stack<TreeNode> stack = new Stack<>();
+
+        while (root != null || !stack.isEmpty()) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            ans.add(root.val);
+            root = root.right;
+        }
+
+        return ans;
+    }
+
+    public List<Integer> inorderTraversal3(TreeNode root) {
+        Stack<TreeNode> stack = new Stack<>();
+
+        while (root != null || !stack.isEmpty()) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            ans.add(root.val);
+            root = root.right;
+        }
+        return ans;
     }
 
 }

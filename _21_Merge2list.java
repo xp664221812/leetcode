@@ -33,7 +33,8 @@ class Solution {
 
         if (t1 == null) {
             current.next = t2;
-        } else if (t2 == null) {
+        }
+        if (t2 == null) {
             current.next = t1;
         }
 
@@ -160,6 +161,31 @@ class Solution {
             t2.next = mergeTwoLists6(t1, t2.next);
             return t2;
         }
+    }
+
+    public ListNode mergeTwoLists7(ListNode t1, ListNode t2) {
+        ListNode head = new ListNode(0);
+        ListNode current = head;
+        while (t1 != null && t2 != null) {
+            if (t1.val < t2.val) {
+                current.next = t1;
+                current = t1;
+                t1 = t1.next;
+
+            } else {
+                current.next = t2;
+                current = t2;
+                t2 = t2.next;
+            }
+        }
+        if (t1 == null) {
+            current.next = t2;
+        }
+        if (t2 == null) {
+            current.next = t1;
+        }
+
+        return head.next;
     }
 
     // Definition for singly-linked list.
