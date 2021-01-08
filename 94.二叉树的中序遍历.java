@@ -88,5 +88,29 @@ class Solution {
         return ans;
     }
 
+
+
+
+    public List<Integer> inorderTraversal4(TreeNode root) {
+        Stack<TreeNode> stack=new Stack<>();
+
+        if(root==null){
+            return ans;
+        }
+
+        while(root!=null||!stack.isEmpty()){
+            while(root!=null){
+                stack.push(root);
+                root=root.left;
+            }
+            root=stack.pop();
+            ans.add(root.val);
+            root=root.right;
+
+        }
+
+        }
+    }
+
 }
 // @lc code=end
